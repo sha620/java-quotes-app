@@ -1,28 +1,30 @@
 pipeline{
     agent any;
     stages{
-        stage("code clone"){
+        stage("clone"){
             steps{
-                git url: "https://github.com/sha620/java-quotes-app.git",branch: "master"
+                git url :"https://github.com/sha620/java-quotes-app.git", branch: "master"
+                
             }
         }
-        stage("code build"){
-          steps{
-              sh "docker build -t java-app:latest ." 
-              
-          } 
+        stage("build"){
+            steps{
+                sh "docker build -t java-app:latest ."
+            }
+            
         }
-        stage("code test"){
+        stage("test"){
             steps{
                 echo "test"
             }
+            
         }
-        stage("code push to docker hub"){
+        stage("push"){
             steps{
                 withCredentials([usernamePassword(
-                credentialsId:"peda",
+                credentialsId: "mom",
                 usernameVariable: "user",
-                passwordVariable:"pass"
+                passwordVariable: "pass"
                 )]){
                 sh "docker login -u ${env.user} -p ${env.pass}"
                 sh "docker image tag java-app:latest ${env.user}/java-app:latest"
@@ -31,11 +33,12 @@ pipeline{
             }
             
         }
-        stage("code deploy"){
+        stage("deploy"){
             steps{
-                sh "docker run -d java-app:latest"
-            }
+                sh "docker run -d java-app:latest" 
+                }
             
         }
+        
     }
 }
