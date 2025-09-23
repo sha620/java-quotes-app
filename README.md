@@ -3,7 +3,7 @@
 This project is a simple Java-based HTTP server that serves random motivational quotes via a REST API. The quotes are externalized to a `quotes.txt` file for easy customization.jj
 
 ## Features
-- Serves random motivational quotes in JSON format.t
+- Serves random motivational quotes in JSON format.tdkdkd
 - Uses an external `quotes.txt` file for configurable quotes.
 - Lightweight HTTP server using `com.sun.net.httpserver.HttpServer`.
 - Dockerized for easy deployment.
