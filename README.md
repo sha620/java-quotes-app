@@ -1,4 +1,4 @@
-# Java Motivational Quotes Appllllll
+# Java Motivational Quotes Appllllllll
 
 This project is a simple Java-based HTTP server that serves random motivational quotes via a REST API. The quotes are externalized to a `quotes.txt` file for easy customization.jj
 
