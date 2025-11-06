@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage(clone){
             steps{
-                git url:"https://github.com/sha620/java-quotes-app.git", branch:"master"
+                git url: "https://github.com/sha620/java-quotes-app.git",branch: "master"
             }
         }
         stage(build){
@@ -15,17 +15,11 @@ pipeline{
             steps{
                 echo "test"
             }
-            
         }
         stage(push){
             steps{
-                echo "push"
-            }
-        }
-        stage(deploy){
-            steps{
                 withCredentials([usernamePassword(
-                    credentialsId: "papanew",
+                    credentialsId: "lax",
                     usernameVariable: "user",
                     passwordVariable: "pass"
                     )]){
@@ -33,6 +27,11 @@ pipeline{
                         sh "docker image tag java-app:ll ${env.user}/java-app:ll"
                         sh "docker push ${env.user}/java-app:ll"
                     }
+            }
+        }
+        stage(deploy){
+            steps{
+                sh "docker run -d java-app:ll"
             }
         }
     }
